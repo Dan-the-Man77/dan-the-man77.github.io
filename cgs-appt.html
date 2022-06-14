@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Make an Appointment!</title>
+  <link rel="stylesheet" href="css/styles-appt.css">
+</head>
+<body>
+  <div class="container">
+    <form onsubmit="sendEmail(); reset(); return false;">
+      <h3>MAKE AN APPOINTMENT</h3>
+      <input type="text" id="name" placeholder="Your Name" required>
+      <input type="email" id="email" placeholder="Your Email Address" required>
+      <input type="text" id="phone" placeholder="Your Phone Number" required>
+      <textarea id="message" rows="4" placeholder="Please state any questions and/or concerns..."></textarea>
+      <button type="submit">Schedule Now!</button>
+    </form>
+  </div>
+  <script src="https://smtpjs.com/v3/smtp.js"></script>
+  <script>
+    function sendEmail() {
+      Email.send({
+    Host : "smtp.elasticemail.com",
+    Username : "caroline.echeverry1527@gmail.com",
+    Password : "7CC9CAA040C4BF157FE76FE06029F1B53738",
+    To : 'caroline.echeverry1527@gmail.com',
+    From : document.getElementById('email').value,
+    Subject : "New Appointment Request for Child Growth Services",
+    Body : "Name: " + document.getElementById("name").value
+      + "<br> Email: " + document.getElementById("email").value
+      + "<br> Phone no: " + document.getElementById("phone").value
+      + "<br> Message: " + document.getElementById("message").value
+}).then(
+  message => alert(message)
+  //Message sent successfully! We'll respond shortly!//
+);
+    }
+  </script>
+</body>
+</html>
